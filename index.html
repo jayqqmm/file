@@ -1,23 +1,87 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-<title>Food Factory</title>
-<link rel="stylesheet" href="/style.css" / >
+  <title>Food Factory</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-<br><br><br>
-<img src="https://dcassetcdn.com/design_img/10150/1680/1680_298517_10150_image.jpg" width="200" height="200"></img>
-<h1>Don't know what you want to eat!!! <br> No Problem, just click the bottom.</h1>
-<form>
-    <input id="textSubmit" type="submit" value="Click me"></input>
-</form>
-<div id="results" color="red" ></div>
-<footer>
-  <p>Posted by: Luqi Deng</p>
-  <p>My GitHub repository: <a href="https://github.com/jayqqmm/file">
-   https://github.com/jayqqmm/file</a>.</p>
+    <br><br><br>
+    <img src="https://dcassetcdn.com/design_img/10150/1680/1680_298517_10150_image.jpg" width="200" height="200"></img>
+    <h1>Don't know what you want to eat!!! <br> No Problem, just click the buttons.</h1>
+    
+  <div id="app">
+    <div v-if="loading">
+      <p>Loading...</p>
+    </div>
+    <div v-else>
+      <p>
+        <button v-on:click="previousComic">Previous</button>
+        <button v-on:click="randomComic">Random</button>
+        <button v-on:click="nextComic">Next</button>
+      </p>
+      <h1 id="mealname">{{current.strMeal}}</h1>
+      <img v-bind:src="current.strMealThumb"height="580" width="800">
+      <p>{{current.strIngredient1}}</p>
+      <p>{{current.strIngredient2}}</p>
+      <p>{{current.strIngredient3}}</p>
+      <p>{{current.strIngredient4}}</p>
+      <p>{{current.strIngredient5}}</p>
+      <p>{{current.strIngredient6}}</p>
+      <p>{{current.strIngredient7}}</p>
+      <p>{{current.strIngredient8}}</p>
+      <p>{{current.strIngredient9}}</p>
+      <p>{{current.strIngredient10}}</p>
+      <p>{{current.strIngredient11}}</p>
+      <p>{{current.strIngredient12}}</p>
+      <p>{{current.strIngredient13}}</p>
+      <p>{{current.strIngredient14}}</p>
+      <p>{{current.strIngredient15}}</p>
+      <p>{{current.strIngredient16}}</p>
+      <p>{{current.strIngredient17}}</p>
+      <p>{{current.strIngredient18}}</p>
+      <p>{{current.strIngredient19}}</p>
+      <p>{{current.strIngredient20}}</p>
+      <p>{{current.strInstructions}}</p>
+      <p>
+        <div id="star">
+          <star-rating @rating-selected="setRating" v-bind:star-size="80" increment = "0.5" active-color = "red" show-rating = "flase" ></star-rating>
+        </div>
+        <br>
+        Average rating: {{rating}}
+        <br><br><br><br>
+      </p>
+      <h1>Add a Comment</h1>
+      <form v-on:submit.prevent="addComment">
+        <p><input v-model="addedName" placeholder="Name"></p>
+        <textarea v-model="addedComment"></textarea>
+        <br>
+        <button type="submit">Comment</button>
+      </form>
+ 
+      <h3>Comments</h3>
+      <div v-for="comment in comments[number]">
+        <hr>
+        <p>{{comment.text}}</p>
+        <p><i>-- {{comment.author}}</i></p>
+        <p>{{comment.time}}</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <br><br><br><br>
+    <p>Posted by: Luqi Deng</p>
+    <p>My GitHub repository: <a href="https://github.com/jayqqmm/file">
+        https://github.com/jayqqmm/file</a>.</p>
   </footer>
-<script src="main.js"></script>
+
+  <script src="https://momentjs.com/downloads/moment.js"></script>
+  <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.7/dist/vue.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
